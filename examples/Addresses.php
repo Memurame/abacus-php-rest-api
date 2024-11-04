@@ -11,7 +11,7 @@ require './config.php';
 use AbacusAPIClient\AbacusClient;
 use AbacusAPIClient\ResourceType;
 
-$client = new AbacusClient($abacus_client_config);
+$client = new AbacusClient($abacus_demo_client_config);
 
 
 //
@@ -21,3 +21,11 @@ $client = new AbacusClient($abacus_client_config);
 $addresses = $client->resource(ResourceType::ADDRESSES)->all();
 
 print("<pre>".print_r($addresses,true)."</pre>");
+
+//
+// Get Address by ID
+//
+
+$address = $client->resource(ResourceType::ADDRESSES)->get($addresses[13]['Id']);
+
+print("<pre>".print_r($address,true)."</pre>");

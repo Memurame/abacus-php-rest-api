@@ -11,3 +11,10 @@ $abacus_client_config = [
     'client_secret' => 'b2f83401-3fd2c9f65d7f',
     'mandant'       => '7777'
 ];
+
+$abacus_demo_client_config = [
+    'base_url'      => 'https://entity-api1-1.demo.abacus.ch',
+    'client_id'     => '20080b49-63a4-fa163eafb1e9',
+    'client_secret' => '9da66e5f-06b0-bd3a8c76d1d3',
+    'mandant'       => '7777'
+];
