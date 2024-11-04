@@ -11,6 +11,8 @@ abstract class AbstractResource{
 
     private $client;
 
+    private $remote_data = [];
+
     public function __construct( \AbacusAPIClient\AbacusClient $client )
     {
         $this->client = $client;
@@ -37,5 +39,30 @@ abstract class AbstractResource{
         }
 
         return $url;
+    }
+
+    public function all(array $filter = []){
+
+        $url = $this->getURL('all');
+
+        $response = $this->client->getRequest($url);
+
+        return $response->getData()['value'];
+    }
+
+    public function get(string $id){
+        $url = $this->getURL('get', ['Id' => $id]);
+
+        $response = $this->client->getRequest($url);
+
+        return $response->getData();
+    }
+
+    public function delete(string $id){
+        $url = $this->getURL('delete', ['Id' => $id]);
+
+        $response = $this->client->deleteRequest($url);
+
+        return $response->getData();
     }
 }
