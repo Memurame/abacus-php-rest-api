@@ -7,6 +7,7 @@
 
 use PHPUnit\Framework\TestCase;
 use AbacusAPIClient\AbacusClient;
+use AbacusAPIClient\ResourceType;
 use Dotenv\Dotenv;
 
 class AbacusClientTest extends TestCase
@@ -37,7 +38,7 @@ class AbacusClientTest extends TestCase
     public function testGetRequest()
     {
         // Teste eine Anfrage an die API und prüfe, ob die Antwort ein Array ist
-        $response = $this->client->getRequest('Addresses');
+        $response = $this->client->resource(ResourceType::ADDRESSES)->all();
         $this->assertIsArray($response, 'Response should be an array');
     }
 }
