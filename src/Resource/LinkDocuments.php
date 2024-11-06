@@ -11,8 +11,10 @@ class LinkDocuments extends AbstractResource
 {
     const URLS = [
         'get'       => 'LinkDocuments(Id={Id})',
-        'all'       => 'LinkDocuments',
+        'update'    => 'LinkDocuments(Id={Id})',
         'delete'    => 'LinkDocuments(Id={Id})',
+        'create'    => 'LinkDocuments',
+        'all'       => 'LinkDocuments',
     ];
 
 }

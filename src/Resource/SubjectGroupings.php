@@ -11,8 +11,10 @@ class SubjectGroupings extends AbstractResource
 {
     const URLS = [
         'get'       => 'SubjectGroupings(Id={Id})',
-        'all'       => 'SubjectGroupings',
+        'update'    => 'SubjectGroupings(Id={Id})',
         'delete'    => 'SubjectGroupings(Id={Id})',
+        'create'    => 'SubjectGroupings',
+        'all'       => 'SubjectGroupings',
     ];
 
 }

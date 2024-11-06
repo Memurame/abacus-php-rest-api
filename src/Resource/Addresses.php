@@ -7,12 +7,17 @@
 
 namespace AbacusAPIClient\Resource;
 
+use AbacusAPIClient\ResourceType;
+
 class Addresses extends AbstractResource
 {
     const URLS = [
         'get'       => 'Addresses(Id={Id})',
-        'all'       => 'Addresses',
+        'update'    => 'Addresses(Id={Id})',
         'delete'    => 'Addresses(Id={Id})',
-    ];
+        'create'    => 'Addresses',
+        'all'       => 'Addresses',
 
+    ];   
+    
 }

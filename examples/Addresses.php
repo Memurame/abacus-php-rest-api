@@ -5,8 +5,8 @@
  * @author Thomas Hirter <memurame@tekomail.ch>
  */
 
-require '../vendor/autoload.php';
-require './config.php';
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/config.php';
 
 use AbacusAPIClient\AbacusClient;
 use AbacusAPIClient\ResourceType;
@@ -20,12 +20,16 @@ $client = new AbacusClient($abacus_demo_client_config);
 
 $addresses = $client->resource(ResourceType::ADDRESSES)->all();
 
-print("<pre>".print_r($addresses,true)."</pre>");
+print("<pre>".print_r($addresses->getValues(),true)."</pre>");
 
 //
 // Get Address by ID
 //
 
-$address = $client->resource(ResourceType::ADDRESSES)->get($addresses[13]['Id']);
+$address = $client->resource(ResourceType::ADDRESSES)->get('0bfc02c0-e9ed-e201-175a-c2d220524153');
 
-print("<pre>".print_r($address,true)."</pre>");
+$address->setValues(['City' => 'Solothurn', 'PostCode' => "3232"]);
+
+$address->save();
+
+print("<pre>".print_r($address->getValues(),true)."</pre>");

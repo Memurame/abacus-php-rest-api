@@ -11,8 +11,10 @@ class SubjectDocuments extends AbstractResource
 {
     const URLS = [
         'get'       => 'SubjectDocuments(Id={Id})',
-        'all'       => 'SubjectDocuments',
+        'update'    => 'SubjectDocuments(Id={Id})',
         'delete'    => 'SubjectDocuments(Id={Id})',
+        'create'    => 'SubjectDocuments',
+        'all'       => 'SubjectDocuments',
     ];
 
 }

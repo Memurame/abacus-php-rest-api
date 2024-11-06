@@ -11,8 +11,10 @@ class Communications extends AbstractResource
 {
     const URLS = [
         'get'       => 'Communications(Id={Id})',
-        'all'       => 'Communications',
+        'update'    => 'Communications(Id={Id})',
         'delete'    => 'Communications(Id={Id})',
+        'create'    => 'Communications',
+        'all'       => 'Communications',
     ];
 
 }

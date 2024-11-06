@@ -18,7 +18,6 @@ class AbacusClient
     private $token;
     private $cache;
     private $credentials;
-    private $last_response;
 
     public function __construct(array $credentials)
     {
@@ -68,22 +67,26 @@ class AbacusClient
             throw new \Exception('Failed to authenticate with Abacus API: ' . $e->getMessage());
         }
     }
-    private function request(string $method, string $path, array $params = [])
+    private function request(string $method, string $path, array $params = [], array $values = [])
     {
         $url = '/api/entity/v1/mandants/' . $this->credentials['mandant'] . '/' . $path;
 
         $request = [
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->token,
+                'Content-Type' => 'application/json',
             ],
             'query' => $params,
+            'body' => json_encode($values),
         ];
+
+        if($method == 'PATCH'){
+            //dd($request);
+        }
+
 
         try {
             $response = $this->client->request($method, $url, $request);
-
-            $body = json_decode($response->getBody(), true);
-
 
             $response = new Response(
                 $response->getStatusCode(),
@@ -91,8 +94,6 @@ class AbacusClient
                 $response->getBody(),
                 $response->getHeaders()
             );
-
-            $this->setLastResponse($response);
 
             return $response;
         } catch (RequestException $e) {
@@ -104,8 +105,12 @@ class AbacusClient
         return $this->request('GET', $path, $params);
     }
 
-    public function postRequest(string $path, array $params = []){
-        return $this->request('POST', $path, $params);
+    public function postRequest(string $path, array $values = []){
+        return $this->request('POST', $path, [], $values);
+    }
+
+    public function patchRequest(string $path, array $values = []){
+        return $this->request('PATCH', $path, [], $values);
     }
 
     public function deleteRequest(string $path, array $params = []){
@@ -120,15 +125,5 @@ class AbacusClient
     {
         $resource_object = new $resource_type($this);
         return $resource_object;
-    }
-
-    private function setLastResponse( Response $response )
-    {
-        $this->last_response = $response;
-    }
-
-    public function getLastResponse()
-    {
-        return $this->last_response;
     }
 }

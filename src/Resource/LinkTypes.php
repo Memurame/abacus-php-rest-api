@@ -11,8 +11,10 @@ class LinkTypes extends AbstractResource
 {
     const URLS = [
         'get'       => 'LinkTypes(Id={Id})',
-        'all'       => 'LinkTypes',
+        'update'    => 'LinkTypes(Id={Id})',
         'delete'    => 'LinkTypes(Id={Id})',
+        'create'    => 'LinkTypes',
+        'all'       => 'LinkTypes',
     ];
 
 }
