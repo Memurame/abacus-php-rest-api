@@ -38,21 +38,21 @@ $abacusClient = new AbacusClient([
 To read all objects without filtering:
 ```php
 use AbacusAPIClient\ResourceType;
-$addresses = $abacusClient->resource(ResourceType::ADDRESSES)->all();
+$addresses = $abacusClient->resource(ResourceType::ADDRESSES)->run();
 ```
 
 ### Fetching a single Resource object
 To read a single objects by Id:
 ```php
 use AbacusAPIClient\ResourceType;
-$address = $abacusClient->resource(ResourceType::ADDRESSES)->get('02b95ac0-e9ed-e201-175a-c2d220524153');
+$address = $abacusClient->resource(ResourceType::ADDRESSES)->id('02b95ac0-e9ed-e201-175a-c2d220524153')->run();
 ```
 
 ### Searching by a Key and Value
 Searches objects for the specific value in a key and returns it as an array:
 ```php
 use AbacusAPIClient\ResourceType;
-$addresses = $abacusClient->resource(ResourceType::ADDRESSES)->search('SubjectId', 'eq', 8);
+$addresses = $abacusClient->resource(ResourceType::ADDRESSES)->filter('SubjectId', 'eq', 8)->run();
 ```
 You can find out which search operators can be used in the following link
 https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter

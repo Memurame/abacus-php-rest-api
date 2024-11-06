@@ -18,7 +18,7 @@ $client = new AbacusClient($abacus_demo_client_config);
 // Get all Addresses
 //
 
-$addresses = $client->resource(ResourceType::ADDRESSES)->all();
+$addresses = $client->resource(ResourceType::ADDRESSES)->run();
 
 print("<pre>".print_r($addresses->getValues(),true)."</pre>");
 
@@ -26,7 +26,7 @@ print("<pre>".print_r($addresses->getValues(),true)."</pre>");
 // Get Address by ID
 //
 
-$address = $client->resource(ResourceType::ADDRESSES)->get('0bfc02c0-e9ed-e201-175a-c2d220524153');
+$address = $client->resource(ResourceType::ADDRESSES)->id('0bfc02c0-e9ed-e201-175a-c2d220524153')->run();
 
 $address->setValues(['City' => 'Solothurn', 'PostCode' => "3232"]);
 
