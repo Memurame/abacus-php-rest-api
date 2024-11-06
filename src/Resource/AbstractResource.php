@@ -29,7 +29,7 @@ abstract class AbstractResource{
 
     private $select;
 
-    private $resource;
+    private $expand;
 
     public function __construct( \AbacusAPIClient\AbacusClient $client )
     {
