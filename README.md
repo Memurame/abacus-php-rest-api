@@ -48,14 +48,38 @@ use AbacusAPIClient\ResourceType;
 $address = $abacusClient->resource(ResourceType::ADDRESSES)->id('02b95ac0-e9ed-e201-175a-c2d220524153')->run();
 ```
 
-### Searching by a Key and Value
-Searches objects for the specific value in a key and returns it as an array:
+### Query builder
+You have the option to include various queries with the request.
+You can attach any of these functions to a request.
+As an example, I have listed all possible queries for you
 ```php
 use AbacusAPIClient\ResourceType;
-$addresses = $abacusClient->resource(ResourceType::ADDRESSES)->filter('SubjectId', 'eq', 8)->run();
+$addresses = $abacusClient->resource(ResourceType::ADDRESSES)
+    ->filter('SubjectId', 'eq', 8)
+    ->limit(3)
+    ->order('Id', 'desc')
+    ->select('FirstName')
+    ->expand('Subject')
+    ->run();
 ```
-You can find out which search operators can be used in the following link
+#### filter
+You can search for a key and its value. You can see how the string is structured in the link below
 https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter
+
+#### limit
+You can specify how many results you want.
+https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop
+
+#### order
+Define which key to sort by and in which direction.
+https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby
+#### select
+Define which values you want back. The ID is always included.
+https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect
+
+#### expand
+You can attach related entities here.
+https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand
 
 ### Get all Values of the object
 To get all available Values of the Address:
@@ -114,14 +138,14 @@ to your code. You then can reference the resource type like
 $abacusClient->resource( ResourceType::ADDRESSES );
 ```
 
-|Resource type|get|all|search|save|delete|
-|-------------|:-:|:-:|:----:|:--:|:----:|
-| ADDRESSES|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
-| COMMUNICATIONS|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
-| LINKDOCUMENTS|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
-| LINKS|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
-| LINKTYPES|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
-| SUBJECTDOCUMENTS|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
-| SUBJECTGROUPINGENTRIES|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
-| SUBJECTGROUPINGS|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
-| SUBJECTS|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
+|Resource type| implemented |
+|-------------|:-----------:|
+| ADDRESSES|  &#10004;   |
+| COMMUNICATIONS|  &#10004;   |
+| LINKDOCUMENTS|  &#10004;   |
+| LINKS|  &#10004;   |
+| LINKTYPES|  &#10004;   |
+| SUBJECTDOCUMENTS|  &#10004;   |
+| SUBJECTGROUPINGENTRIES|  &#10004;   |
+| SUBJECTGROUPINGS|  &#10004;   |
+| SUBJECTS|  &#10004;   |
