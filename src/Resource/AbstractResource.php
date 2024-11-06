@@ -23,6 +23,14 @@ abstract class AbstractResource{
 
     private $filter;
 
+    private $limit;
+
+    private $order;
+
+    private $select;
+
+    private $resource;
+
     public function __construct( \AbacusAPIClient\AbacusClient $client )
     {
         $this->client = $client;
@@ -75,6 +83,18 @@ abstract class AbstractResource{
         if(!empty($this->filter)){
             $query['$filter'] = $this->filter;
         }
+        if(!empty($this->limit)){
+            $query['$top'] = $this->limit;
+        }
+        if(!empty($this->order)){
+            $query['$orderBy'] = $this->limit;
+        }
+        if(!empty($this->expand)){
+            $query['$expand'] = $this->expand;
+        }
+        if(!empty($this->select)){
+            $query['$select'] = $this->select;
+        }
 
         if(empty($this->url)){
             $this->url = $this->getURL('all');
@@ -95,6 +115,30 @@ abstract class AbstractResource{
     public function filter(string $key, string $operator, string $search){
 
         $this->filter = implode(" ", [$key, $operator, $search]);
+
+        return $this;
+    }
+
+    public function limit(int $limit){
+        $this->limit = $limit;
+
+        return $this;
+    }
+
+    public function select(string $key){
+        $this->select = $key;
+
+        return $this;
+    }
+
+    public function order(string $key, string $direction){
+        $this->order = implode(" ", [$key, $direction]);
+
+        return $this;
+    }
+
+    public function expand(string $resource){
+        $this->expand = $resource;
 
         return $this;
     }
