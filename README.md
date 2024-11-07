@@ -138,14 +138,21 @@ to your code. You then can reference the resource type like
 $abacusClient->resource( ResourceType::ADDRESSES );
 ```
 
-|Resource type| implemented |
-|-------------|:-----------:|
-| ADDRESSES|  &#10004;   |
-| COMMUNICATIONS|  &#10004;   |
-| LINKDOCUMENTS|  &#10004;   |
-| LINKS|  &#10004;   |
-| LINKTYPES|  &#10004;   |
-| SUBJECTDOCUMENTS|  &#10004;   |
-| SUBJECTGROUPINGENTRIES|  &#10004;   |
-| SUBJECTGROUPINGS|  &#10004;   |
-| SUBJECTS|  &#10004;   |
+| Resource type               | Category | Implemented & tested |
+|:----------------------------|:---------|:--------------------:|
+| ACCOUNTDOCUMENTS            | Finance  |       &#10004;       |
+| ACCOUNTS                    | Finance  |       &#10004;       |
+| ADDRESSES                   | CRM      |       &#10004;       |
+| COMMUNICATIONS              | CRM      |       &#10004;       |
+| COSTCENTREDOCUMENTS         | Finance  |       &#10004;       |
+| COSTCENTRES                 | Finance  |       &#10004;       |
+| GENERALLEDGERENTRIES        | Finance  |       &#10004;       |
+| GENERALLEDGERENTRYDOCUMENTS | Finance  |       &#10004;       |
+| JOURNALS                    | Finance  |       &#10004;       |
+| LINKDOCUMENTS               | CRM      |       &#10004;       |
+| LINKTYPES                   | CRM      |       &#10004;       |
+| LINKS                       | CRM      |       &#10004;       |
+| SUBJECTDOCUMENTS            | CRM      |       &#10004;       |
+| SUBJECTGROUPINGENTRIES      | CRM      |       &#10004;       |
+| SUBJECTGROUPINGS            | CRM      |       &#10004;       |
+| SUBJECTS                    | CRM      |       &#10004;       |

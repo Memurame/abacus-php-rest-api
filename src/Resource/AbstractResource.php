@@ -143,9 +143,11 @@ abstract class AbstractResource{
         return $this;
     }
 
-    public function id(string $id){
+    public function id(string $id, array $secondIds = []){
+        
+        $array = array_merge(['Id' => $id], $secondIds);
 
-        $this->url = $this->getURL('get', ['Id' => $id]);
+        $this->url = $this->getURL('get', $array);
 
         return $this;
     }

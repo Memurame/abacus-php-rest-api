@@ -18,4 +18,11 @@ class ResourceType
     const SUBJECTGROUPINGENTRIES  = '\\AbacusAPIClient\\Resource\\SubjectGroupingEntries';
     const SUBJECTGROUPINGS        = '\\AbacusAPIClient\\Resource\\SubjectGroupings';
     const SUBJECTS                = '\\AbacusAPIClient\\Resource\\Subjects';
+    const ACCOUNTDOCUMENTS        = '\\AbacusAPIClient\\Resource\\AccountDocuments';
+    const ACCOUNTS                = '\\AbacusAPIClient\\Resource\\Accounts';
+    const COSTCENTREDOCUMENTS    = '\\AbacusAPIClient\\Resource\\CostCentreDocuments';
+    const COSTCENTRES            = '\\AbacusAPIClient\\Resource\\CostCentres';
+    const GENERALLEDGERENTRIES   = '\\AbacusAPIClient\\Resource\\GeneralLedgerEntries';
+    const GENERALLEDGERENTRYDOCUMENTS   = '\\AbacusAPIClient\\Resource\\GeneralLedgerEntryDocuments';
+    const JOURNALS               = '\\AbacusAPIClient\\Resource\\Journals';
 }
