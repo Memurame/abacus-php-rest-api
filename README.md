@@ -54,12 +54,13 @@ You can attach any of these functions to a request.
 As an example, I have listed all possible queries for you
 ```php
 use AbacusAPIClient\ResourceType;
-$addresses = $abacusClient->resource(ResourceType::ADDRESSES)
+$addresses = $abacusClient->resource(ResourceType::SUBJECTS)
     ->filter('SubjectId', 'eq', 8)
     ->limit(3)
     ->order('Id', 'desc')
     ->select('FirstName')
-    ->expand('Subject')
+    ->expand('Addresses', 'Communications')
+    ->all()
     ->run();
 ```
 #### filter
@@ -68,6 +69,7 @@ https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#se
 
 #### limit
 You can specify how many results you want.
+Does not work together with all()
 https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop
 
 #### order
@@ -80,6 +82,13 @@ https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#se
 #### expand
 You can attach related entities here.
 https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand
+
+#### all
+Abacus does not output all data records, it works with [@odata.nextLink]. As long as @odata.nextLink exists, it has data records that can still be retrieved. 
+A request is made with the all() function until all data records have been retrieved.
+
+
+
 
 ### Get all Values of the object
 To get all available Values of the Address:
