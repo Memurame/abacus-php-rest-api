@@ -80,11 +80,6 @@ class AbacusClient
             'body' => json_encode($values),
         ];
 
-        if($method == 'PATCH'){
-            //dd($request);
-        }
-
-
         try {
             $response = $this->client->request($method, $url, $request);
 
@@ -99,6 +94,7 @@ class AbacusClient
         } catch (RequestException $e) {
             throw new \Exception("Failed to retrieve data from Abacus API: " . $e->getMessage());
         }
+
     }
 
     public function getRequest(string $path, array $params = []){

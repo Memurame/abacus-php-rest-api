@@ -31,6 +31,8 @@ abstract class AbstractResource{
 
     private $expand;
 
+    private $all;
+
     public function __construct( \AbacusAPIClient\AbacusClient $client )
     {
         $this->client = $client;
@@ -106,8 +108,33 @@ abstract class AbstractResource{
         }
         else {
             $this->clearError();
-            $this->setRemoteData( $response->getData() );
+            $this->setRemoteData($response->getData());
+
         }
+
+        if(!empty($this->all)) {
+            if (isset($response->getData()['@odata.nextLink'])) {
+                $values = [];
+                $i = 0;
+                $next = true;
+                while ($next && $i < 10) {
+                    $i++;
+                    $parsedUrl = parse_url($response->getData()['@odata.nextLink']);
+                    parse_str($parsedUrl['query'], $params);
+
+                    $response = $this->client->getRequest($this->url, $params);
+                    $values = array_merge($values, $response->getData()['value']);
+
+                    $next = isset($response->getData()['@odata.nextLink']);
+                }
+
+                if ($values) $this->setValues($values);
+
+            }
+        }
+
+
+
 
         return $this;
     }
@@ -125,6 +152,12 @@ abstract class AbstractResource{
         return $this;
     }
 
+    public function all(){
+        $this->all = true;
+
+        return $this;
+    }
+
     public function select(string $key){
         $this->select = $key;
 
@@ -137,8 +170,9 @@ abstract class AbstractResource{
         return $this;
     }
 
-    public function expand(string $resource){
-        $this->expand = $resource;
+    public function expand(string ...$resources) {
+        // Kombiniere alle übergebenen Ressourcen mit einem Komma
+        $this->expand = implode(",", $resources);
 
         return $this;
     }
