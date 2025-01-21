@@ -21,7 +21,7 @@ abstract class AbstractResource{
 
     private $url;
 
-    private $filter;
+    private $filters = [];
 
     private $limit;
 
@@ -82,8 +82,8 @@ abstract class AbstractResource{
     public function run(){
 
         $query = [];
-        if(!empty($this->filter)){
-            $query['$filter'] = $this->filter;
+        if(!empty($this->filters)){
+            $query['$filter'] = implode(" and ", $this->filters);
         }
         if(!empty($this->limit)){
             $query['$top'] = $this->limit;
@@ -101,7 +101,9 @@ abstract class AbstractResource{
         if(empty($this->url)){
             $this->url = $this->getURL('all');
         }
+
         $response = $this->client->getRequest($this->url, $query);
+
 
         if ( $response->hasError() ) {
             $this->setError( $response->getError() );
@@ -141,7 +143,7 @@ abstract class AbstractResource{
 
     public function filter(string $key, string $operator, string $search){
 
-        $this->filter = implode(" ", [$key, $operator, $search]);
+        $this->filters[] = implode(" ", [$key, $operator, $search]);
 
         return $this;
     }
